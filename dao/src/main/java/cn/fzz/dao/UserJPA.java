@@ -1,7 +1,7 @@
 package cn.fzz.dao;
 
 import cn.fzz.bean.UserEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
+import cn.fzz.repository.BaseRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Transactional
-public interface UserJPA extends JpaRepository<UserEntity,Long>
+public interface UserJPA extends BaseRepository<UserEntity,Long>
 {
     //查询大于20岁的用户
     @Query(value = "select * from t_user where t_age > ?1",nativeQuery = true)

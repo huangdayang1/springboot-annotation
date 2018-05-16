@@ -17,7 +17,7 @@ import java.util.List;
  * Desc:
  */
 @Component
-@ComponentScan(basePackages = {"cn.fzz.dao"})
+@ComponentScan(basePackages = {"cn.fzz.dao", "cn.fzz.repository"})
 public class UserServiceImpl implements UserService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
