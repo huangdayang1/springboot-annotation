@@ -22,8 +22,8 @@ public class UserEntity extends BaseEntity implements Serializable {
     @Column(name = "age")
     private int age;
 
-    @Column(name = "address")
-    private String address;
+//    @Column(name = "address")
+//    private String address;
 
     @Column(name = "email")
     private String email;
@@ -34,6 +34,14 @@ public class UserEntity extends BaseEntity implements Serializable {
     @Column(name = "date_update")
     private Date date_update;
 
+    public UserEntity() {
+    }
+
+    public UserEntity(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
 
 
     public Long getId() {
@@ -68,13 +76,13 @@ public class UserEntity extends BaseEntity implements Serializable {
         this.age = age;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
+//    public String getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(String address) {
+//        this.address = address;
+//    }
 
     public String getEmail() {
         return email;
