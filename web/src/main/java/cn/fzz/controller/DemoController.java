@@ -36,10 +36,29 @@ public class DemoController {
     }
 
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
-    public String welcome(ModelMap model) {
+    public String welcome(ModelMap model) throws Exception {
         // 加入一个属性，用来在模板中读取
         model.addAttribute("message", "http://blog.didispace.com");
         // return模板文件的名称，对应src/main/resources/templates/index.html
-        return "welcome";
+
+        throw new Exception("test");
+
+//        return "welcome";
+    }
+
+    /**
+     * 404页面
+     */
+    @RequestMapping(value = "/error/404")
+    public String error_404() {
+        return "error/404";
+    }
+
+    /**
+     * 500页面
+     */
+    @RequestMapping(value = "/error/500")
+    public String error_500() {
+        return "error/500";
     }
 }

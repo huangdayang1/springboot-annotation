@@ -92,6 +92,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         //notLoginPaths.add("/sys/logout");
         //notLoginPaths.add("/loginTimeout");
 
-        return notLoginPaths.contains(path) || path.contains("static") || path.contains("error") || path.contains("images") || path.contains(".css");
+        return notLoginPaths.contains(path) || path.contains(".css") || path.contains("error") || path.contains("images") || path.contains(".js");
     }
 }
