@@ -2,8 +2,8 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf-8&useSSL=true
-    username: zhen
+    url: jdbc:mysql://localhost:3306/study?useUnicode=true&characterEncoding=utf-8
+    username: root
     password: 951106
     #最大活跃数
     maxActive: 20
@@ -30,3 +30,11 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+
+server:
+  port: 9090
+  ssl:
+    key-store: keystore.p12
+    key-store-password: zmd19951005
+    key-store-type: PKCS12
+    key-alias: tomcat

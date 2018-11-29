@@ -8,10 +8,10 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>startup</module>
-        <module>web</module>
-        <module>web</module>
-        <module>dao</module>
+        <module>service</module>
         <module>bean</module>
+        <module>dao</module>
+        <module>web</module>
     </modules>
     <packaging>pom</packaging>
 
