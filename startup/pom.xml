@@ -12,6 +12,7 @@
 
     <artifactId>startup</artifactId>
 
+    <packaging>jar</packaging>
     <dependencies>
         <!--引入druid最新maven依赖-->
         <dependency>
@@ -58,14 +59,14 @@
     </dependencies>
 
     <build>
-        <finalName>${project.parent.artifactId}</finalName>
-        <directory>../target</directory>
+        <finalName>springboot-demo</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <fork>true</fork>
+                    <mainClass>cn.fzz.springbootdemo.SpringbootDemoApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

@@ -41,9 +41,7 @@ public class DemoController {
         model.addAttribute("message", "http://blog.didispace.com");
         // return模板文件的名称，对应src/main/resources/templates/index.html
 
-        throw new Exception("test");
-
-//        return "welcome";
+        return "welcome";
     }
 
     /**
