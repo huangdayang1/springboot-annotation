@@ -7,15 +7,19 @@
         <groupId>cn.fzz</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>web</artifactId>
     <packaging>jar</packaging>
+    <properties>
+        <demo.version>0.0.1-SNAPSHOT</demo.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>cn.fzz</groupId>
             <artifactId>dao</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${demo.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -26,6 +30,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <version>${org.springframework.boot.version}</version>
         </dependency>
     </dependencies>
 
@@ -38,6 +43,7 @@
                     <fork>true</fork>
                     <mainClass>cn.fzz.springbootdemo.SpringbootDemoApplication</mainClass>
                 </configuration>
+                <version>${org.springframework.boot.version}</version>
             </plugin>
         </plugins>
     </build>
