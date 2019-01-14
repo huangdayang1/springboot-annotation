@@ -1,7 +1,10 @@
 package cn.fzz.interceptor;
 
+import cn.fzz.common.PermissionConstants;
+import cn.fzz.common.annotation.RequiredPermission;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Logger;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by Andy on 2018/11/23.
@@ -52,7 +56,15 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             }
             return false;
         }
-        return true;
+        if (hasPermission(session, handler)) {
+            return true;
+        }else {
+            response.setHeader("sessionStatus", "timeout");
+            response.setHeader("basePath", request.getContextPath() + "user/login");
+            response.getWriter().print("权限不足!");
+            response.sendRedirect(request.getContextPath() + "user/login");
+            return false;
+        }
     }
 
     /**
@@ -66,5 +78,41 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         notLoginPaths.add("/user/register");
 
         return notLoginPaths.contains(path);
+    }
+
+    /**
+     * 是否有权限
+     *
+     * @param handler
+     * @return
+     */
+    private boolean hasPermission(HttpSession session, Object handler) {
+        if (handler instanceof HandlerMethod) {
+            HandlerMethod handlerMethod = (HandlerMethod) handler;
+            // 获取方法上的注解
+            RequiredPermission requiredPermission = handlerMethod.getMethod().getAnnotation(RequiredPermission.class);
+            // 如果方法上的注解为空 则获取类的注解
+            if (requiredPermission == null) {
+                requiredPermission = handlerMethod.getMethod().getDeclaringClass().getAnnotation(RequiredPermission.class);
+            }
+            // 如果标记了注解，则判断权限
+            if (requiredPermission != null && StringUtils.isNotBlank(requiredPermission.value())) {
+                /*
+                // redis或数据库 中获取该用户的权限信息 并判断是否有权限
+                Set<String> permissionSet = adminUserService.getPermissionSet();
+                if (CollectionUtils.isEmpty(permissionSet) ){
+                    return false;
+                }
+                return permissionSet.contains(requiredPermission.value());
+                */
+                Object status = session.getAttribute("status");
+                if (status!=null)
+                    if (requiredPermission.value().equals(PermissionConstants.ADMIN_PRODUCT_LIST))
+                        return status.equals(0);
+                    else if (requiredPermission.value().equals(PermissionConstants.ADMIN_PRODUCT_DETAIL))
+                        return status.equals(1);
+            }
+        }
+        return false;
     }
 }

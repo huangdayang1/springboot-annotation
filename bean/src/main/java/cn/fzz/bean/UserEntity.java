@@ -19,14 +19,17 @@ public class UserEntity extends BaseEntity implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "age")
-    private int age;
-
 //    @Column(name = "address")
 //    private String address;
 
     @Column(name = "email")
     private String email;
+
+    @Column(name = "status")
+    private Integer status;
+
+    @Column(name = "date_birth")
+    private Date date_birth;
 
     @Column(name = "date_joined")
     private Date date_joined;
@@ -68,14 +71,6 @@ public class UserEntity extends BaseEntity implements Serializable {
         this.password = password;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
 //    public String getAddress() {
 //        return address;
 //    }
@@ -90,6 +85,22 @@ public class UserEntity extends BaseEntity implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Date getDate_birth() {
+        return date_birth;
+    }
+
+    public void setDate_birth(Date date_birth) {
+        this.date_birth = date_birth;
     }
 
     public Date getDate_joined() {
