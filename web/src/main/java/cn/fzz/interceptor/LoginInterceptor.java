@@ -26,8 +26,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     private Logger log = Logger.getLogger(String.valueOf(LoginInterceptor.class));
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-            throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String basePath = request.getContextPath();
         String path = request.getRequestURI();
         log.info("basePath:" + basePath);

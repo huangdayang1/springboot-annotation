@@ -103,6 +103,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.github.fanzezhen</groupId>
+            <artifactId>utils</artifactId>
+            <version>1.0.2</version>
+        </dependency>
     </dependencies>
 
     <build>
