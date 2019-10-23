@@ -56,11 +56,13 @@ public class UserController {
         if (!(StringUtils.isEmpty(email) || StringUtils.isEmpty(password))) {
             modelMap.addAttribute("email", email);
             modelMap.addAttribute("password", password);
-            if (password.equals(userService.getByEmail(email).getPassword())) {
+            UserEntity user = userService.getByEmail(email);
+            if (user != null && password.equals(user.getPassword())) {
                 modelMap.addAttribute("email", "successful");
                 modelMap.addAttribute("password", "successful");
                 HttpSession session = request.getSession();
                 session.setAttribute("account", email);
+                session.setAttribute("status", user.getStatus());
                 return "redirect:/welcome";
             }
         }

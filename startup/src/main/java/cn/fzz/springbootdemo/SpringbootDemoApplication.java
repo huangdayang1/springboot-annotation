@@ -3,6 +3,8 @@ package cn.fzz.springbootdemo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.apache.catalina.connector.Connector;
@@ -14,7 +16,12 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 @EntityScan("cn.fzz.bean")
 @EnableJpaRepositories("cn.fzz.dao")
-public class SpringbootDemoApplication {
+public class SpringbootDemoApplication extends SpringBootServletInitializer {
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(SpringbootDemoApplication.class);
+    }
 
     @Bean
     public ServletWebServerFactory servletContainer() {
@@ -25,7 +32,7 @@ public class SpringbootDemoApplication {
 
     private Connector createStandardConnector() {
         Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
-        connector.setPort(8080);
+        connector.setPort(9000);
         return connector;
     }
 
